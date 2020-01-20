@@ -1,9 +1,9 @@
 
-div {
+div.container {
   text-align: center;
   padding-top: 30px;
 }
 
-p {
+label {
   color: #ffffff;
 }
