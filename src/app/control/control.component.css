@@ -1,9 +1,19 @@
 
 div.container {
   text-align: center;
-  padding-top: 30px;
+  padding-top: 60px;
 }
 
 label {
   color: #ffffff;
+  margin-right: -15px;
+  text-align: right;
+}
+
+button {
+  width: 50%;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid #da4141;
 }
