@@ -11,6 +11,7 @@
           class="form-control"
           name="filed"
           #field="ngModel"
+          pattern="\d"
           maxlength="2"
           minlength="1"
           ngModel
@@ -20,32 +21,36 @@
       </div>
       <span class="help-block" *ngIf="!field.valid && field.touched">Please enter a valid number</span>
       <div class="form-group row">
-        <label for="fieldMax" class="col-sm-9 col-form-label"
+        <label for="yournNumber" class="col-sm-9 col-form-label"
           >The number of your numbers (1 - 90):</label
         >
         <div class="col-sm-3">
           <input
             type="text"
             class="form-control"
-            pattern="\d{2}"
+            pattern="\d"
+            name="yournNumber"
             #yourNumbers="ngModel"
             maxlength="2"
+            minlength="1"
             ngModel
             required
           />
         </div>
       </div>
       <div class="form-group row">
-        <label for="fieldMax" class="col-sm-9 col-form-label"
+        <label for="coupons" class="col-sm-9 col-form-label"
           >Number of your coupons (1 - 1000):</label
         >
         <div class="col-sm-3">
           <input
             type="text"
             class="form-control"
-            pattern="\d{4}"
-            #coupons
+            pattern="\d"
+            name="coupons"
+            #coupons="ngModel"
             maxlength="4"
+            minlength='1'
             ngModel
             required
           />
