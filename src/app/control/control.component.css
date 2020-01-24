@@ -6,7 +6,6 @@ div.container {
 
 label {
   color: #ffffff;
-  margin-right: -15px;
   text-align: right;
 }
 
@@ -14,6 +13,8 @@ button {
   width: 50%;
 }
 
-input.ng-invalid.ng-touched {
-  border: 1px solid #da4141;
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
