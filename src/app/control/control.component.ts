@@ -9,8 +9,14 @@ import { NgForm } from '@angular/forms';
 export class ControlComponent implements OnInit, DoCheck {
   @ViewChild('f', {static: false}) numbersForm: NgForm;
   fieldNum: number;
+  fieldMin = 5;
+  fieldMax = 99;
   yourNum: number;
+  yourMin = 1;
+  yourMax = 90;
   couponNum: number;
+  couponMin = 1;
+  couponMax = 1000;
   isfieldNumValid = false;
   isyourNumValid = false;
   iscouponNumValid = false;
@@ -21,19 +27,19 @@ export class ControlComponent implements OnInit, DoCheck {
   }
 
   ngDoCheck() {
-    if (this.fieldNum <= 4 || this.fieldNum >= 100) {
+    if (this.fieldNum < this.fieldMin || this.fieldNum > this.fieldMax) {
       this.isfieldNumValid = false;
     } else {
       this.isfieldNumValid = true;
     }
 
-    if (this.yourNum <= 0 || this.yourNum >= 91) {
+    if (this.yourNum < this.yourMin || this.yourNum > this.yourMax) {
       this.isyourNumValid = false;
     } else {
       this.isyourNumValid = true;
     }
 
-    if (this.couponNum <= 0 || this.couponNum >= 1001) {
+    if (this.couponNum < this.couponMin || this.couponNum > this.couponMax) {
       this.iscouponNumValid = false;
     } else {
       this.iscouponNumValid = true;

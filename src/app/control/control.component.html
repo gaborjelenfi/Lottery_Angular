@@ -13,8 +13,8 @@
             #field="ngModel"
             [(ngModel)]="fieldNum"
             required
-            min="5"
-            max="99"
+            min="fieldMin"
+            max="fieldMax"
           />
         </div>
       </div>
@@ -34,8 +34,8 @@
             class="form-control"
             name="yourNumbers"
             #yourNumbers="ngModel"
-            min="1"
-            max="90"
+            min="yourMin"
+            max="yourMax"
             [(ngModel)]="yourNum"
             required
           />
@@ -66,8 +66,8 @@
             class="form-control"
             name="coupons"
             #coupons="ngModel"
-            min="1"
-            max="1000"
+            min="couponMin"
+            max="couponMax"
             [(ngModel)]="couponNum"
             required
           />
