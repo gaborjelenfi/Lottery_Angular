@@ -3,7 +3,7 @@
     <form ngNativeValidate (ngSubmit)="onSubmit()" #f="ngForm">
       <div class="form-group row">
         <label for="field" class="col-sm-9 col-form-label"
-          >Numbers field maximum (5 - 99):</label
+          >Numbers field maximum ({{ fieldMin }} - {{ fieldMax }}):</label
         >
         <div class="col-sm-3">
           <input
@@ -21,12 +21,12 @@
       <div class="alert alert-danger" *ngIf="!field.valid && field.touched">
         Please enter a valid number!
       </div>
-      <div class="alert alert-danger" *ngIf="!isfieldNumValid && field.touched">
-        Please enter between 5 and 99!
+      <div class="alert alert-danger" *ngIf="fieldNum && !isFieldNumValid">
+        Please enter between {{ fieldMin }} and {{ fieldMax }}!
       </div>
       <div class="form-group row">
         <label for="yourNumbers" class="col-sm-9 col-form-label"
-          >The number of your numbers (1 - 90):</label
+          >The number of your numbers ({{ yourMin }} - {{ yourMax }}):</label
         >
         <div class="col-sm-3">
           <input
@@ -49,16 +49,16 @@
       </div>
       <div
         class="alert alert-danger"
-        *ngIf="!isyourNumValid && yourNumbers.touched"
+        *ngIf="yourNum && !isYourNumValid"
       >
-        Please enter between 1 and 90!
+        Please enter between {{ yourMin }} and {{ yourMax }}!
       </div>
-      <div class="alert alert-danger" *ngIf="yourNum >= fieldNum">
+      <div class="alert alert-danger" *ngIf="yourNum !== null && yourNum >= fieldNum">
         Can't be higher or equal than field maximum!
       </div>
       <div class="form-group row">
         <label for="coupons" class="col-sm-9 col-form-label"
-          >Number of your coupons (1 - 1000):</label
+          >Number of your coupons ({{ couponMin }} - {{ possibleCouponMax }}):</label
         >
         <div class="col-sm-3">
           <input
@@ -78,15 +78,15 @@
       </div>
       <div
         class="alert alert-danger"
-        *ngIf="!iscouponNumValid && coupons.touched"
+        *ngIf="couponNum && !isCouponNumValid"
       >
-        Please enter between 1 and 1000!
+        Please enter between {{ couponMin }} and {{ possibleCouponMax }}!
       </div>
       <button
         type="submit"
         class="btn btn-light btn-lg"
         [disabled]="
-          !f.valid || !isfieldNumValid || !isyourNumValid || !iscouponNumValid || (yourNum > fieldNum)"
+          !f.valid || !isFieldNumValid || !isYourNumValid || !isCouponNumValid || (yourNum > fieldNum)"
       >
         Start
       </button>

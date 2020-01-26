@@ -8,18 +8,19 @@ import { NgForm } from '@angular/forms';
 })
 export class ControlComponent implements OnInit, DoCheck {
   @ViewChild('f', {static: false}) numbersForm: NgForm;
-  fieldNum: number;
+  fieldNum: number = null;
   fieldMin = 5;
   fieldMax = 99;
-  yourNum: number;
+  yourNum: number = null;
   yourMin = 1;
   yourMax = 90;
-  couponNum: number;
+  couponNum: number = null;
   couponMin = 1;
   couponMax = 1000;
-  isfieldNumValid = false;
-  isyourNumValid = false;
-  iscouponNumValid = false;
+  possibleCouponMax: number = null;
+  isFieldNumValid = false;
+  isYourNumValid = false;
+  isCouponNumValid = false;
 
   constructor() { }
 
@@ -28,21 +29,40 @@ export class ControlComponent implements OnInit, DoCheck {
 
   ngDoCheck() {
     if (this.fieldNum < this.fieldMin || this.fieldNum > this.fieldMax) {
-      this.isfieldNumValid = false;
+      this.isFieldNumValid = false;
     } else {
-      this.isfieldNumValid = true;
+      this.isFieldNumValid = true;
     }
 
     if (this.yourNum < this.yourMin || this.yourNum > this.yourMax) {
-      this.isyourNumValid = false;
+      this.isYourNumValid = false;
     } else {
-      this.isyourNumValid = true;
+      this.isYourNumValid = true;
     }
 
-    if (this.couponNum < this.couponMin || this.couponNum > this.couponMax) {
-      this.iscouponNumValid = false;
+    if (this.couponNum < this.couponMin || this.couponNum > this.possibleCouponMax) {
+      this.isCouponNumValid = false;
     } else {
-      this.iscouponNumValid = true;
+      this.isCouponNumValid = true;
+    }
+
+    if (this.isFieldNumValid && this.isYourNumValid && this.yourNum < this.fieldNum) {
+      this.possibleCouponMax = this.possibleCouponTotal();
+      console.log(this.possibleCouponMax);
+    }
+  }
+
+  possibleCouponTotal(): number {
+    let multiplyRangeMax = 1;
+    let multiplyX = 1;
+    for (let i = 0; i < this.yourNum; i++) {
+      multiplyRangeMax *= this.fieldNum - i;
+      multiplyX *= this.yourNum - i;
+    }
+    if (multiplyRangeMax / multiplyX <= this.couponMax) {
+      return Math.floor(multiplyRangeMax / multiplyX);
+    } else {
+      return this.couponMax;
     }
   }
 
