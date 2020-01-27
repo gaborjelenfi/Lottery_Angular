@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, DoCheck } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ControlInputService } from './controlInput.service';
 
 @Component({
   selector: 'app-control',
@@ -7,67 +8,52 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./control.component.css']
 })
 export class ControlComponent implements OnInit, DoCheck {
-  @ViewChild('f', {static: false}) numbersForm: NgForm;
-  fieldNum: number = null;
-  fieldMin = 5;
-  fieldMax = 99;
-  yourNum: number = null;
-  yourMin = 1;
-  yourMax = 90;
-  couponNum: number = null;
-  couponMin = 1;
-  couponMax = 1000;
-  possibleCouponMax: number = null;
+  @ViewChild('f', { static: false }) numbersForm: NgForm;
   isFieldNumValid = false;
   isYourNumValid = false;
   isCouponNumValid = false;
 
-  constructor() { }
+  constructor(public controlService: ControlInputService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   ngDoCheck() {
-    if (this.fieldNum < this.fieldMin || this.fieldNum > this.fieldMax) {
+    if (
+      this.controlService.fieldNum < this.controlService.fieldMin ||
+      this.controlService.fieldNum > this.controlService.fieldMax
+    ) {
       this.isFieldNumValid = false;
     } else {
       this.isFieldNumValid = true;
     }
 
-    if (this.yourNum < this.yourMin || this.yourNum > this.yourMax) {
+    if (
+      this.controlService.yourNum < this.controlService.yourMin ||
+      this.controlService.yourNum > this.controlService.yourMax
+    ) {
       this.isYourNumValid = false;
     } else {
       this.isYourNumValid = true;
     }
 
-    if (this.couponNum < this.couponMin || this.couponNum > this.possibleCouponMax) {
+    if (
+      this.controlService.couponNum < this.controlService.couponMin ||
+      this.controlService.couponNum > this.controlService.possibleCouponMax
+    ) {
       this.isCouponNumValid = false;
     } else {
       this.isCouponNumValid = true;
     }
 
-    if (this.isFieldNumValid && this.isYourNumValid && this.yourNum < this.fieldNum) {
-      this.possibleCouponMax = this.possibleCouponTotal();
-      console.log(this.possibleCouponMax);
+    if (
+      this.isFieldNumValid &&
+      this.isYourNumValid &&
+      this.controlService.yourNum < this.controlService.fieldNum
+    ) {
+      this.controlService.possibleCouponMax = this.controlService.possibleCouponTotal();
+      console.log(this.controlService.possibleCouponMax);
     }
   }
 
-  possibleCouponTotal(): number {
-    let multiplyRangeMax = 1;
-    let multiplyX = 1;
-    for (let i = 0; i < this.yourNum; i++) {
-      multiplyRangeMax *= this.fieldNum - i;
-      multiplyX *= this.yourNum - i;
-    }
-    if (multiplyRangeMax / multiplyX <= this.couponMax) {
-      return Math.floor(multiplyRangeMax / multiplyX);
-    } else {
-      return this.couponMax;
-    }
-  }
-
-  onSubmit() {
-
-  }
-
+  onSubmit() {}
 }

@@ -3,7 +3,7 @@
     <form ngNativeValidate (ngSubmit)="onSubmit()" #f="ngForm">
       <div class="form-group row">
         <label for="field" class="col-sm-9 col-form-label"
-          >Numbers field maximum ({{ fieldMin }} - {{ fieldMax }}):</label
+          >Numbers field maximum ({{ controlService.fieldMin }} - {{ controlService.fieldMax }}):</label
         >
         <div class="col-sm-3">
           <input
@@ -11,7 +11,7 @@
             class="form-control"
             name="field"
             #field="ngModel"
-            [(ngModel)]="fieldNum"
+            [(ngModel)]="controlService.fieldNum"
             required
             min="fieldMin"
             max="fieldMax"
@@ -21,12 +21,12 @@
       <div class="alert alert-danger" *ngIf="!field.valid && field.touched">
         Please enter a valid number!
       </div>
-      <div class="alert alert-danger" *ngIf="fieldNum && !isFieldNumValid">
-        Please enter between {{ fieldMin }} and {{ fieldMax }}!
+      <div class="alert alert-danger" *ngIf="controlService.fieldNum && !isFieldNumValid">
+        Please enter between {{ controlService.fieldMin }} and {{ controlService.fieldMax }}!
       </div>
       <div class="form-group row">
         <label for="yourNumbers" class="col-sm-9 col-form-label"
-          >The number of your numbers ({{ yourMin }} - {{ yourMax }}):</label
+          >The number of your numbers ({{ controlService.yourMin }} - {{ controlService.yourMax }}):</label
         >
         <div class="col-sm-3">
           <input
@@ -36,7 +36,7 @@
             #yourNumbers="ngModel"
             min="yourMin"
             max="yourMax"
-            [(ngModel)]="yourNum"
+            [(ngModel)]="controlService.yourNum"
             required
           />
         </div>
@@ -49,16 +49,16 @@
       </div>
       <div
         class="alert alert-danger"
-        *ngIf="yourNum && !isYourNumValid"
+        *ngIf="controlService.yourNum && !isYourNumValid"
       >
-        Please enter between {{ yourMin }} and {{ yourMax }}!
+        Please enter between {{ controlService.yourMin }} and {{ controlService.yourMax }}!
       </div>
-      <div class="alert alert-danger" *ngIf="yourNum !== null && yourNum >= fieldNum">
+      <div class="alert alert-danger" *ngIf="controlService.yourNum !== null && controlService.yourNum >= controlService.fieldNum">
         Can't be higher or equal than field maximum!
       </div>
       <div class="form-group row">
         <label for="coupons" class="col-sm-9 col-form-label"
-          >Number of your coupons ({{ couponMin }} - {{ possibleCouponMax }}):</label
+          >Number of your coupons ({{ controlService.couponMin }} - {{ controlService.possibleCouponMax }}):</label
         >
         <div class="col-sm-3">
           <input
@@ -68,7 +68,7 @@
             #coupons="ngModel"
             min="couponMin"
             max="couponMax"
-            [(ngModel)]="couponNum"
+            [(ngModel)]="controlService.couponNum"
             required
           />
         </div>
@@ -76,17 +76,20 @@
       <div class="alert alert-danger" *ngIf="!coupons.valid && coupons.touched">
         Please enter a valid number!
       </div>
+      <div class="alert alert-danger" *ngIf="(!isFieldNumValid || !isYourNumValid) && coupons.touched">
+        Please add field and your number!
+      </div>
       <div
         class="alert alert-danger"
-        *ngIf="couponNum && !isCouponNumValid"
+        *ngIf="controlService.couponNum && !isCouponNumValid && isFieldNumValid && isYourNumValid"
       >
-        Please enter between {{ couponMin }} and {{ possibleCouponMax }}!
+        Please enter between {{ controlService.couponMin }} and {{ controlService.possibleCouponMax }}!
       </div>
       <button
         type="submit"
         class="btn btn-light btn-lg"
         [disabled]="
-          !f.valid || !isFieldNumValid || !isYourNumValid || !isCouponNumValid || (yourNum > fieldNum)"
+          !f.valid || !isFieldNumValid || !isYourNumValid || !isCouponNumValid || (controlService.yourNum > controlService.fieldNum)"
       >
         Start
       </button>

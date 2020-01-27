@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { NumbersMakerService } from './numbers-maker.service';
+import { ControlInputService } from './controlInput.service';
 
-describe('NumbersMakerService', () => {
+describe('ControlService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: NumbersMakerService = TestBed.get(NumbersMakerService);
+    const service: ControlInputService = TestBed.get(ControlInputService);
     expect(service).toBeTruthy();
   });
 });
