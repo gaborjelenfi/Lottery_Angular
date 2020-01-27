@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, DoCheck } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ControlInputService } from './controlInput.service';
+import { ControlInputService } from './control-input.service';
 
 @Component({
   selector: 'app-control',
@@ -51,7 +51,6 @@ export class ControlComponent implements OnInit, DoCheck {
       this.controlService.yourNum < this.controlService.fieldNum
     ) {
       this.controlService.possibleCouponMax = this.controlService.possibleCouponTotal();
-      console.log(this.controlService.possibleCouponMax);
     }
   }
 
