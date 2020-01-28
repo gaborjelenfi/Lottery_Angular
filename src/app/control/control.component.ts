@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, DoCheck } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ControlInputService } from './control-input.service';
+import { GeneratingNumberService } from '../generating/generating-number.service';
 
 @Component({
   selector: 'app-control',
@@ -13,7 +14,8 @@ export class ControlComponent implements OnInit, DoCheck {
   isYourNumValid = false;
   isCouponNumValid = false;
 
-  constructor(public controlService: ControlInputService) {}
+  constructor(public controlService: ControlInputService,
+              private generatingNumberService: GeneratingNumberService) {}
 
   ngOnInit() {}
 
@@ -54,5 +56,7 @@ export class ControlComponent implements OnInit, DoCheck {
     }
   }
 
-  onSubmit() {}
+  onSubmit() {
+    this.generatingNumberService.generateNumbers();
+  }
 }

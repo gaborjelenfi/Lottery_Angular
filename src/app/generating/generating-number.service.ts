@@ -9,10 +9,10 @@ export class GeneratingNumberService {
   singleCouponArr = [];
   randomNumber: number;
 
-  constructor(private controlService: ControlInputService) { }
+  constructor(private controlService: ControlInputService) {}
 
   generateNumbers() {
-    for (let i = 0; i < this.controlService.couponNum;) {
+    for (let i = 0; i < this.controlService.couponNum; ) {
       this.randomNumber = this.randomNumberForYourNumber();
       do {
         this.singleCouponArr.push(this.randomNumber);
@@ -24,17 +24,21 @@ export class GeneratingNumberService {
         i++;
       }
     }
+    console.log(this.couponList);
   }
 
   randomNumberForYourNumber() {
-    return Math.floor(Math.random() * this.controlService.fieldMax) + this.controlService.fieldMin;
+    return (
+      Math.floor(Math.random() * this.controlService.fieldMax) +
+      this.controlService.fieldMin
+    );
   }
 
   noSameNumber(): boolean {
     if (this.singleCouponArr.length >= this.controlService.yourNum) {
       return false;
     } else {
-      for (let i = 0; i < this.singleCouponArr.length;) {
+      for (let i = 0; i < this.singleCouponArr.length; ) {
         if (this.singleCouponArr[i] === this.randomNumber) {
           this.randomNumber = this.randomNumberForYourNumber();
           i = 0;
@@ -48,11 +52,17 @@ export class GeneratingNumberService {
 
   noSameCoupon() {
     for (const item of this.couponList) {
-      if (item.equal(this.singleCouponArr)) {
+      if (item.length !== this.singleCouponArr.length) {
+        return false;
+      } else {
+        for (let i = 0; i < item.length; i++) {
+          if (item[i] !== this.singleCouponArr[i]) {
+            return;
+          }
+        }
         return false;
       }
     }
     return true;
   }
-
 }
