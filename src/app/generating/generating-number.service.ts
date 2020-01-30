@@ -12,34 +12,39 @@ export class GeneratingNumberService {
   constructor(private controlService: ControlInputService) {}
 
   generateNumbers() {
+    this.couponList = [];
     for (let i = 0; i < this.controlService.couponNum; ) {
+      this.singleCouponArr = [];
+      console.log('new coupon');
       this.randomNumber = this.randomNumberForYourNumber();
       do {
         this.singleCouponArr.push(this.randomNumber);
+        console.log('x. element writes to the array');
         this.randomNumber = this.randomNumberForYourNumber();
       } while (this.noSameNumber());
-      this.singleCouponArr.sort();
-      if (this.noSameCoupon()) {
-        this.couponList.push(this.singleCouponArr);
+      this.singleCouponArr.sort((a, b) => a - b);
+      if (this.noSameCoupon() || this.couponList.length === 0) {
+        this.couponList.push([this.singleCouponArr]);
+        console.log('singleCouponArr: ' + this.singleCouponArr);
+        console.log('N. coupon created');
         i++;
       }
     }
-    console.log(this.couponList);
+    console.log('couponList: ' + this.couponList);
   }
 
   randomNumberForYourNumber() {
-    return (
-      Math.floor(Math.random() * this.controlService.fieldMax) +
-      this.controlService.fieldMin
-    );
+    return Math.floor(Math.random() * this.controlService.fieldNum) + 1;
   }
 
   noSameNumber(): boolean {
     if (this.singleCouponArr.length >= this.controlService.yourNum) {
+      console.log('reached the quantity that was choose for x');
       return false;
     } else {
       for (let i = 0; i < this.singleCouponArr.length; ) {
         if (this.singleCouponArr[i] === this.randomNumber) {
+          console.log('same number found');
           this.randomNumber = this.randomNumberForYourNumber();
           i = 0;
         } else {
@@ -51,18 +56,14 @@ export class GeneratingNumberService {
   }
 
   noSameCoupon() {
-    for (const item of this.couponList) {
-      if (item.length !== this.singleCouponArr.length) {
-        return false;
-      } else {
-        for (let i = 0; i < item.length; i++) {
-          if (item[i] !== this.singleCouponArr[i]) {
-            return;
-          }
+    for (const el of this.couponList) {
+      for (let i = 0; i < el.length; i++) {
+        console.log(el[i]);
+        if (el[i] !== this.singleCouponArr[i]) {
+          return true;
         }
-        return false;
       }
     }
-    return true;
+    return false;
   }
 }
