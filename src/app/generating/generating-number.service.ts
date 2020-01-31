@@ -24,13 +24,13 @@ export class GeneratingNumberService {
       } while (this.noSameNumber());
       this.singleCouponArr.sort((a, b) => a - b);
       if (this.noSameCoupon() || this.couponList.length === 0) {
-        this.couponList.push([this.singleCouponArr]);
+        this.couponList.push(this.singleCouponArr);
         console.log('singleCouponArr: ' + this.singleCouponArr);
         console.log('N. coupon created');
         i++;
       }
     }
-    console.log('couponList: ' + this.couponList);
+    console.log(this.couponList);
   }
 
   randomNumberForYourNumber() {
@@ -56,14 +56,20 @@ export class GeneratingNumberService {
   }
 
   noSameCoupon() {
+    let equalCount = 0;
     for (const el of this.couponList) {
-      for (let i = 0; i < el.length; i++) {
+      for (let i = 0; i < this.singleCouponArr.length; i++) {
         console.log(el[i]);
-        if (el[i] !== this.singleCouponArr[i]) {
-          return true;
+        console.log(this.singleCouponArr[i]);
+        if (el[i] === this.singleCouponArr[i]) {
+          equalCount++;
         }
       }
+      if (equalCount === this.singleCouponArr.length) {
+        return false;
+      }
+      equalCount = 0;
     }
-    return false;
+    return true;
   }
 }
