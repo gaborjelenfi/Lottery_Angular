@@ -4,6 +4,10 @@ div {
   padding-top: 30px;
 }
 
-p {
+h3 {
   color: #ffffff;
+}
+
+.numbers {
+  display: block;
 }

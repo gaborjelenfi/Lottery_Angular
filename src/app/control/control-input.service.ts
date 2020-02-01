@@ -6,10 +6,10 @@ import { Injectable } from '@angular/core';
 export class ControlInputService {
   fieldNum: number = null;
   fieldMin = 5;
-  fieldMax = 99;
+  fieldMax = 90;
   yourNum: number = null;
   yourMin = 1;
-  yourMax = 90;
+  yourMax = 20;
   couponNum: number = null;
   couponMin = 1;
   couponMax = 100;

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GeneratingNumberService } from './generating-number.service';
 
 @Component({
   selector: 'app-generating',
@@ -7,10 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GeneratingComponent implements OnInit {
 
-  constructor() { }
+  constructor(public generatingNumberService: GeneratingNumberService) { }
 
   ngOnInit() {
   }
-
 
 }

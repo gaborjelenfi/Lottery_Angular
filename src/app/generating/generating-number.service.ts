@@ -8,10 +8,12 @@ export class GeneratingNumberService {
   couponList = [];
   singleCouponArr = [];
   randomNumber: number;
+  isCouponListReady = false;
 
   constructor(private controlService: ControlInputService) {}
 
   generateNumbers() {
+    this.isCouponListReady = false;
     this.couponList = [];
     for (let i = 0; i < this.controlService.couponNum; ) {
       this.singleCouponArr = [];
@@ -30,6 +32,8 @@ export class GeneratingNumberService {
         i++;
       }
     }
+    this.isCouponListReady = true;
+    console.log(this.isCouponListReady);
     console.log(this.couponList);
   }
 
