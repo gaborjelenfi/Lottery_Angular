@@ -4,7 +4,7 @@
       <h3>Enter the parameters on the left side!</h3>
     </div>
     <ng-template #show>
-      <ul class="numbers">
+      <ol class="rectangle-list">
         <li
           *ngFor="
             let numbers of generatingNumberService.couponList;
@@ -13,7 +13,7 @@
         >
           {{ generatingNumberService.couponList[i] }}
         </li>
-      </ul>
+      </ol>
     </ng-template>
   </div>
 </div>

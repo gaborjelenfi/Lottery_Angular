@@ -1,7 +1,12 @@
 
 div.container {
   text-align: center;
-  padding-top: 60px;
+  margin-top: 60px;
+}
+
+h3 {
+  color: #ffffff;
+  margin-bottom: 30px;
 }
 
 label {
