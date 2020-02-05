@@ -7,7 +7,7 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ConnectionService {
-  private url = 'api/';
+  private url = 'api/favourites';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json'})
   };

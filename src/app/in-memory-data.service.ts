@@ -13,7 +13,7 @@ export class InMemoryDataService implements InMemoryDbService {
       [9, 15, 16, 32, 42],
       [10, 13, 28, 44, 45],
     ];
-    return favourites;
+    return {favourites};
   }
 
   constructor() { }

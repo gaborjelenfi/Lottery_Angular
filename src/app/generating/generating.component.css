@@ -1,22 +1,20 @@
 
-div {
+div.container {
   text-align: center;
-  margin-top: 100px;
+  padding-top: 30px;
+  height: 93vh;
+  overflow-y: auto;
 }
 
 h3 {
   color: #ffffff;
 }
 
-.numbers {
-  display: block;
-}
-
 ol {
   counter-reset: li; /* Initiate a counter */
   list-style: none; /* Remove default numbering */
   *list-style: decimal; /* Keep using default numbering for IE6/7 */
-  font: 15px 'trebuchet MS', 'lucida sans';
+  font: 20px 'trebuchet MS', 'lucida sans';
   padding: 0;
   margin-bottom: 4em;
   text-shadow: 0 1px 0 rgba(46, 46, 46, 0.5);
@@ -68,4 +66,13 @@ ol {
 .rectangle-list li:hover:after{
   left: -.5em;
   border-left-color: #53b493;
+}
+
+fa-icon {
+  margin-left: 15px;
+  float: right;
+}
+
+.rectangle-list li:hover > fa-icon {
+  color: rgb(255, 217, 0);
 }

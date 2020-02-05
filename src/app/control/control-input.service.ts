@@ -12,7 +12,7 @@ export class ControlInputService {
   yourMax = 10;
   couponNum: number = null;
   couponMin = 1;
-  couponMax = 100;
+  couponMax = 250;
   possibleCouponMax: number = null;
 
   constructor() { }

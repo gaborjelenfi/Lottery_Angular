@@ -4,12 +4,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 import { FormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { GeneratingComponent } from './generating/generating.component';
 import { FavouriteComponent } from './favourite/favourite.component';
 import { ControlComponent } from './control/control.component';
+
+
 
 @NgModule({
   declarations: [
@@ -22,6 +25,7 @@ import { ControlComponent } from './control/control.component';
   imports: [
     BrowserModule,
     FormsModule,
+    FontAwesomeModule,
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false })

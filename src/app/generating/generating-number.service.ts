@@ -28,6 +28,7 @@ export class GeneratingNumberService {
         i++;
       }
     }
+    this.couponList.sort((a, b) => a[0] - b[0]);
     this.isCouponListReady = true;
   }
 
