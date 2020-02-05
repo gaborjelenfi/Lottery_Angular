@@ -17,24 +17,18 @@ export class GeneratingNumberService {
     this.couponList = [];
     for (let i = 0; i < this.controlService.couponNum; ) {
       this.singleCouponArr = [];
-      console.log('new coupon');
       this.randomNumber = this.randomNumberForYourNumber();
       do {
         this.singleCouponArr.push(this.randomNumber);
-        console.log('x. element writes to the array');
         this.randomNumber = this.randomNumberForYourNumber();
       } while (this.noSameNumber());
       this.singleCouponArr.sort((a, b) => a - b);
       if (this.noSameCoupon() || this.couponList.length === 0) {
         this.couponList.push(this.singleCouponArr);
-        console.log('singleCouponArr: ' + this.singleCouponArr);
-        console.log('N. coupon created');
         i++;
       }
     }
     this.isCouponListReady = true;
-    console.log(this.isCouponListReady);
-    console.log(this.couponList);
   }
 
   randomNumberForYourNumber() {
@@ -43,12 +37,10 @@ export class GeneratingNumberService {
 
   noSameNumber(): boolean {
     if (this.singleCouponArr.length >= this.controlService.yourNum) {
-      console.log('reached the quantity that was choose for x');
       return false;
     } else {
       for (let i = 0; i < this.singleCouponArr.length; ) {
         if (this.singleCouponArr[i] === this.randomNumber) {
-          console.log('same number found');
           this.randomNumber = this.randomNumberForYourNumber();
           i = 0;
         } else {
@@ -63,8 +55,6 @@ export class GeneratingNumberService {
     let equalCount = 0;
     for (const el of this.couponList) {
       for (let i = 0; i < this.singleCouponArr.length; i++) {
-        console.log(el[i]);
-        console.log(this.singleCouponArr[i]);
         if (el[i] === this.singleCouponArr[i]) {
           equalCount++;
         }
