@@ -38,33 +38,33 @@ ol {
   background: rgba(148, 148, 148, 0.15);
 }
 
-.rectangle-list li:before{
+.rectangle-list li::before{
   content: counter(li);
   counter-increment: li;
   position: absolute;
-  left: -2.5em;
+  left: -3.5em;
   top: 50%;
   margin-top: -1em;
   background: #53b493;
   height: 2em;
-  width: 2em;
+  width: 2.5em;
   line-height: 2em;
   text-align: center;
   font-weight: bold;
 }
 
-.rectangle-list li:after{
+.rectangle-list li::after{
   position: absolute;
   content: '';
   border: .5em solid transparent;
-  left: -1em;
+  left: -1.5em;
   top: 50%;
   margin-top: -.5em;
   transition: all .3s ease-out;
 }
 
-.rectangle-list li:hover:after{
-  left: -.5em;
+.rectangle-list li:hover::after{
+  left: -1em;
   border-left-color: #53b493;
 }
 

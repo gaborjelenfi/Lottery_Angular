@@ -1,128 +1,131 @@
 <div class="container">
+  <h3>Parameters</h3>
   <div class="row justify-content-center">
-    <h3>Parameters</h3>
-    <form ngNativeValidate (ngSubmit)="onSubmit()" #f="ngForm">
-      <div class="form-group row">
-        <label for="field" class="col-sm-10 col-form-label"
-          >Numbers field maximum ({{ controlService.fieldMin }} -
-          {{ controlService.fieldMax }}):</label
-        >
-        <div class="col-sm-2">
-          <input
-            type="number"
-            class="form-control"
-            name="field"
-            #field="ngModel"
-            [(ngModel)]="controlService.fieldNum"
-            required
-            min="fieldMin"
-            max="fieldMax"
-          />
+      <form ngNativeValidate (ngSubmit)="onSubmit()" #f="ngForm">
+        <div class="form-group row justify-content-center">
+          <label for="field" class="col-form-label"
+            >Number of field maximum ({{ controlService.fieldMin }} -
+            {{ controlService.fieldMax }}) :</label
+          >
+          <div class="col-sm-2">
+            <input
+              type="number"
+              class="form-control"
+              name="field"
+              #field="ngModel"
+              [(ngModel)]="controlService.fieldNum"
+              required
+              min="fieldMin"
+              max="fieldMax"
+              style="width: 55px;"
+            />
+          </div>
         </div>
-      </div>
-      <div class="alert alert-danger" *ngIf="!field.valid && field.touched">
-        Please enter a valid number!
-      </div>
-      <div
-        class="alert alert-danger"
-        *ngIf="controlService.fieldNum && !isFieldNumValid"
-      >
-        Please enter between {{ controlService.fieldMin }} and
-        {{ controlService.fieldMax }}!
-      </div>
-      <div class="form-group row">
-        <label for="yourNumbers" class="col-sm-10 col-form-label"
-          >The number of your numbers ({{ controlService.yourMin }} -
-          {{ controlService.yourMax }}):</label
-        >
-        <div class="col-sm-2">
-          <input
-            type="number"
-            class="form-control"
-            name="yourNumbers"
-            #yourNumbers="ngModel"
-            min="yourMin"
-            max="yourMax"
-            [(ngModel)]="controlService.yourNum"
-            required
-          />
+        <div class="alert alert-danger" *ngIf="!field.valid && field.touched">
+          Please enter a valid number!
         </div>
-      </div>
-      <div
-        class="alert alert-danger"
-        *ngIf="!yourNumbers.valid && yourNumbers.touched"
-      >
-        Please enter a valid number!
-      </div>
-      <div
-        class="alert alert-danger"
-        *ngIf="controlService.yourNum && !isYourNumValid"
-      >
-        Please enter between {{ controlService.yourMin }} and
-        {{ controlService.yourMax }}!
-      </div>
-      <div
-        class="alert alert-danger"
-        *ngIf="
-          controlService.yourNum !== null &&
-          controlService.yourNum >= controlService.fieldNum
-        "
-      >
-        Can't be higher or equal than field maximum!
-      </div>
-      <div class="form-group row">
-        <label for="coupons" class="col-sm-10 col-form-label"
-          >Number of your coupons ({{ controlService.couponMin }} -
-          {{ controlService.possibleCouponMax }}):</label
+        <div
+          class="alert alert-danger"
+          *ngIf="controlService.fieldNum && !isFieldNumValid"
         >
-        <div class="col-sm-2">
-          <input
-            type="number"
-            class="form-control"
-            name="coupons"
-            #coupons="ngModel"
-            min="couponMin"
-            max="couponMax"
-            [(ngModel)]="controlService.couponNum"
-            required
-          />
+          Please enter between {{ controlService.fieldMin }} and
+          {{ controlService.fieldMax }}!
         </div>
-      </div>
-      <div class="alert alert-danger" *ngIf="!coupons.valid && coupons.touched">
-        Please enter a valid number!
-      </div>
-      <div
-        class="alert alert-danger"
-        *ngIf="(!isFieldNumValid || !isYourNumValid) && coupons.touched"
-      >
-        Please add field and your number!
-      </div>
-      <div
-        class="alert alert-danger"
-        *ngIf="
-          controlService.couponNum &&
-          !isCouponNumValid &&
-          isFieldNumValid &&
-          isYourNumValid
-        "
-      >
-        Please enter between {{ controlService.couponMin }} and
-        {{ controlService.possibleCouponMax }}!
-      </div>
-      <button
-        type="submit"
-        class="btn btn-light btn-lg"
-        [disabled]="
-          !f.valid ||
-          !isFieldNumValid ||
-          !isYourNumValid ||
-          !isCouponNumValid ||
-          controlService.yourNum > controlService.fieldNum ||
-          controlService.yourNum >= controlService.fieldNum
-        "
-      >
-        Start
-      </button>
-    </form>
+        <div class="form-group row justify-content-center">
+          <label for="yourNumbers" class="col-form-label"
+            >Number of your numbers ({{ controlService.yourMin }} -
+            {{ controlService.yourMax }}) :</label
+          >
+          <div class="col-sm-2 ml-2">
+            <input
+              type="number"
+              class="form-control"
+              name="yourNumbers"
+              #yourNumbers="ngModel"
+              min="yourMin"
+              max="yourMax"
+              [(ngModel)]="controlService.yourNum"
+              required
+              style="width: 55px;"
+            />
+          </div>
+        </div>
+        <div
+          class="alert alert-danger"
+          *ngIf="!yourNumbers.valid && yourNumbers.touched"
+        >
+          Please enter a valid number!
+        </div>
+        <div
+          class="alert alert-danger"
+          *ngIf="controlService.yourNum && !isYourNumValid"
+        >
+          Please enter between {{ controlService.yourMin }} and
+          {{ controlService.yourMax }}!
+        </div>
+        <div
+          class="alert alert-danger"
+          *ngIf="
+            controlService.yourNum !== null &&
+            controlService.yourNum >= controlService.fieldNum
+          "
+        >
+          Can't be higher or equal than field maximum!
+        </div>
+        <div class="form-group row justify-content-center">
+          <label for="coupons" class="col-form-label"
+            >Number of your coupons ({{ controlService.couponMin }} -
+            {{ controlService.possibleCouponMax }}) :</label
+          >
+          <div class="col-sm-2">
+            <input
+              type="number"
+              class="form-control"
+              name="coupons"
+              #coupons="ngModel"
+              min="couponMin"
+              max="couponMax"
+              [(ngModel)]="controlService.couponNum"
+              required
+              style="width: 55px;"
+            />
+          </div>
+        </div>
+        <div class="alert alert-danger" *ngIf="!coupons.valid && coupons.touched">
+          Please enter a valid number!
+        </div>
+        <div
+          class="alert alert-danger"
+          *ngIf="(!isFieldNumValid || !isYourNumValid) && coupons.touched"
+        >
+          Please add field and your number!
+        </div>
+        <div
+          class="alert alert-danger"
+          *ngIf="
+            controlService.couponNum &&
+            !isCouponNumValid &&
+            isFieldNumValid &&
+            isYourNumValid
+          "
+        >
+          Please enter between {{ controlService.couponMin }} and
+          {{ controlService.possibleCouponMax }}!
+        </div>
+        <button
+          type="submit"
+          class="btn btn-light btn-lg"
+          [disabled]="
+            !f.valid ||
+            !isFieldNumValid ||
+            !isYourNumValid ||
+            !isCouponNumValid ||
+            controlService.yourNum > controlService.fieldNum ||
+            controlService.yourNum >= controlService.fieldNum
+          "
+        >
+          Start
+        </button>
+      </form>
   </div>
 </div>
