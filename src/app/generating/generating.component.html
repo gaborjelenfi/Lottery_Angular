@@ -10,8 +10,11 @@
             let numbers of generatingNumberService.couponList;
             let i = index
           "
+          (click)="onSelected(numbers)"
         >
-          {{ generatingNumberService.couponList[i] }}<fa-icon [icon]="faStar"></fa-icon>
+          {{ numbers
+          }}<fa-icon [icon]="faStar"></fa-icon>
+
         </li>
       </ol>
     </ng-template>

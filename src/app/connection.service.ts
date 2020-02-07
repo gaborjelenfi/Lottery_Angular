@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
+import { Fav } from './fav';
 
 @Injectable({
   providedIn: 'root'
@@ -14,15 +15,19 @@ export class ConnectionService {
 
   constructor(private http: HttpClient) {}
 
-  getAllFavourites(): Observable<number[]> {
-    return this.http.get<number[]>(this.url)
+  getAllFavourites(): Observable<Fav[]> {
+    return this.http.get<Fav[]>(this.url)
       .pipe(
-        catchError(this.handleError<number[]>('getFavourites', []))
+        catchError(this.handleError<Fav[]>('getFavourites', []))
       );
   }
 
-
-
+  addFavourite(fav: Fav): Observable<Fav> {
+    return this.http.post<Fav>(this.url, fav, this.httpOptions)
+      .pipe(
+        catchError(this.handleError<Fav>('addFavourite'))
+      );
+  }
 
   /**
    * Handle Http operation that failed.

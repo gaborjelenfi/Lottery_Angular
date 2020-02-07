@@ -1,11 +1,14 @@
 
-div {
+div.container {
   text-align: center;
-  padding-top: 60px;
+  padding-top: 30px;
+  height: 93vh;
+  overflow-y: auto;
 }
 
 h4 {
   color: #ffffff;
+  margin-bottom: 30px;
 }
 
 ol {
