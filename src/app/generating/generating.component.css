@@ -36,6 +36,7 @@ ol {
 
 .rectangle-list li:hover{
   background: rgba(148, 148, 148, 0.15);
+  cursor: pointer;
 }
 
 .rectangle-list li::before{

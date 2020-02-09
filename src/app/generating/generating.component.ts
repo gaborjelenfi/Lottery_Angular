@@ -20,7 +20,6 @@ export class GeneratingComponent implements OnInit {
 
   onSelected(nums: number[]): void {
     this.connectionService.addFavourite({ nums } as Fav).subscribe();
-    console.log(nums);
   }
 
 }

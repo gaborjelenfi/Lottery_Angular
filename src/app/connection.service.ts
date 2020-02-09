@@ -26,7 +26,7 @@ export class ConnectionService {
     return this.http.post<Fav>(this.url, fav, this.httpOptions)
       .pipe(
         catchError(this.handleError<Fav>('addFavourite'))
-      );
+        );
   }
 
   /**

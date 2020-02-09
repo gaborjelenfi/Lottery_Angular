@@ -7,14 +7,11 @@
       <ol class="rectangle-list">
         <li
           *ngFor="
-            let numbers of generatingNumberService.couponList;
-            let i = index
-          "
+            let numbers of generatingNumberService.couponList"
           (click)="onSelected(numbers)"
         >
-          {{ numbers
-          }}<fa-icon [icon]="faStar"></fa-icon>
-
+          {{ numbers}}
+          <fa-icon [icon]="faStar"></fa-icon>
         </li>
       </ol>
     </ng-template>
