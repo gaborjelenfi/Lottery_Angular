@@ -8,6 +8,7 @@ import { Fav } from './fav';
   providedIn: 'root'
 })
 export class ConnectionService {
+  favourites: Fav[];
   private url = 'api/favourites';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json'})
@@ -23,9 +24,10 @@ export class ConnectionService {
   }
 
   addFavourite(fav: Fav): Observable<Fav> {
+    this.favourites.push(fav);
     return this.http.post<Fav>(this.url, fav, this.httpOptions)
       .pipe(
-        catchError(this.handleError<Fav>('addFavourite'))
+        catchError(this.handleError<Fav>('addFavourite')),
         );
   }
 

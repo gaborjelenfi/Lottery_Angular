@@ -11,8 +11,7 @@ import { Fav } from '../fav';
 export class FavouriteComponent implements OnInit {
   faStar = faStar;
 
-  constructor(private connectionService: ConnectionService) { }
-  favourites: Fav[];
+  constructor(public connectionService: ConnectionService) { }
 
   ngOnInit() {
     this.getAllFavourites();
@@ -20,7 +19,7 @@ export class FavouriteComponent implements OnInit {
 
   getAllFavourites(): void {
     this.connectionService.getAllFavourites()
-      .subscribe(favourites => this.favourites = favourites);
+      .subscribe(favourites => this.connectionService.favourites = favourites);
   }
 
 }
