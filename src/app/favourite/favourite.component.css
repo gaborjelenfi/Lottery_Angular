@@ -37,6 +37,7 @@ ol {
 
 .rectangle-list li:hover{
   background: rgba(148, 148, 148, 0.15);
+  cursor: pointer;
 }
 
 .rectangle-list li::before{
@@ -70,8 +71,21 @@ ol {
 }
 
 fa-icon {
-  margin-left: 15px;
+  margin-left: 10px;
   float: right;
   color: rgb(255, 217, 0);
+}
+
+#trash {
+  display: none;
+  color: #ee3939;
+}
+
+.rectangle-list li:hover > #star {
+  display: none;
+}
+
+.rectangle-list li:hover > #trash {
+  display: inline;
 }
 

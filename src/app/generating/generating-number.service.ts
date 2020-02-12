@@ -12,7 +12,7 @@ export class GeneratingNumberService {
 
   constructor(private controlService: ControlInputService) {}
 
-  generateNumbers() {
+  generateNumbers(): void {
     this.isCouponListReady = false;
     this.couponList = [];
     for (let i = 0; i < this.controlService.couponNum; ) {
@@ -32,7 +32,7 @@ export class GeneratingNumberService {
     this.isCouponListReady = true;
   }
 
-  randomNumberForYourNumber() {
+  randomNumberForYourNumber(): number {
     return Math.floor(Math.random() * this.controlService.fieldNum) + 1;
   }
 
@@ -52,7 +52,7 @@ export class GeneratingNumberService {
     }
   }
 
-  noSameCoupon() {
+  noSameCoupon(): boolean {
     let equalCount = 0;
     for (const el of this.couponList) {
       for (let i = 0; i < this.singleCouponArr.length; i++) {

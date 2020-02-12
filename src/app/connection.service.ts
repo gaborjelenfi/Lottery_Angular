@@ -28,7 +28,16 @@ export class ConnectionService {
     return this.http.post<Fav>(this.url, fav, this.httpOptions)
       .pipe(
         catchError(this.handleError<Fav>('addFavourite')),
-        );
+      );
+  }
+
+  deleteFavourite(fav: Fav): Observable<Fav> {
+    this.favourites = this.favourites.filter(f => f !== fav);
+    const url = `${this.url}/${fav.id}`;
+    return this.http.delete<Fav>(url, this.httpOptions)
+      .pipe(
+        catchError(this.handleError<Fav>('deleteFavourite'))
+      );
   }
 
   /**

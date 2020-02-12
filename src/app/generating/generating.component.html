@@ -8,7 +8,7 @@
         <li
           *ngFor="
             let numbers of generatingNumberService.couponList"
-          (click)="onSelected(numbers)"
+          (click)="add(numbers)"
         >
           {{ numbers}}
           <fa-icon [icon]="faStar"></fa-icon>

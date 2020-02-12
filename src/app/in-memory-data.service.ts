@@ -22,11 +22,6 @@ export class InMemoryDataService implements InMemoryDbService {
     return {favourites};
   }
 
-    // Overrides the genId method to ensure that a hero always has an id.
-  // If the heroes array is empty,
-  // the method below returns the initial number (11).
-  // if the heroes array is not empty, the method below returns the highest
-  // hero id + 1.
   genId(favourites: Fav[]): number {
     return favourites.length > 0 ? Math.max(...favourites.map(favourite => favourite.id)) + 1 : 0;
   }

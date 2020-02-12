@@ -3,6 +3,7 @@ import { GeneratingNumberService } from './generating-number.service';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { ConnectionService } from '../connection.service';
 import { Fav } from '../fav';
+import { InMemoryDataService } from '../in-memory-data.service';
 
 @Component({
   selector: 'app-generating',
@@ -18,7 +19,7 @@ export class GeneratingComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSelected(nums: number[]): void {
+  add(nums: number[]): void {
     this.connectionService.addFavourite({ nums } as Fav).subscribe();
   }
 

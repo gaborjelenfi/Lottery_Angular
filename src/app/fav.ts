@@ -1,6 +1,6 @@
 export class Fav {
   id: number;
-  nums: [];
+  nums: number[];
 }
 
 
