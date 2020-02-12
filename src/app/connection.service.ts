@@ -24,7 +24,6 @@ export class ConnectionService {
   }
 
   addFavourite(fav: Fav): Observable<Fav> {
-    this.favourites.push(fav);
     return this.http.post<Fav>(this.url, fav, this.httpOptions)
       .pipe(
         catchError(this.handleError<Fav>('addFavourite')),
