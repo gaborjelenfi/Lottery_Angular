@@ -6,6 +6,7 @@
     <ng-template #show>
       <ol class="rectangle-list">
         <li
+          [@selected]
           *ngFor="
             let numbers of generatingNumberService.couponList"
           (click)="add(numbers)"
