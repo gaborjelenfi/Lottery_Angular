@@ -3,7 +3,7 @@ import { GeneratingNumberService } from './generating-number.service';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { ConnectionService } from '../connection.service';
 import { Fav } from '../fav';
-import { trigger, state, style, transition, animate } from '@angular/animations';
+import { trigger, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-generating',
@@ -11,18 +11,19 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   styleUrls: ['./generating.component.css'],
   animations: [
     trigger('selected', [
-      state('normal', style({
-        opacity: 1,
-      })),
-      transition('void => *', [
+      transition(':enter', [
         style({
-          opacity: 0
+          opacity: 0,
+          transform: 'translateX(-200px)'
         }),
-        animate(300)
+        animate('300ms', style({
+          transform: 'translateX(0)',
+          opacity: 1
+        }))
       ]),
-      transition('* => void', [
-        animate(400, style({
-          transform: 'translate3d(100%, 0, 0)',
+      transition(':leave', [
+        animate('300ms ease-in', style({
+          transform: 'translateX(200px)',
           opacity: 0
         }))
       ])

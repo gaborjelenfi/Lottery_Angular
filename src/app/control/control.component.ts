@@ -57,6 +57,7 @@ export class ControlComponent implements OnInit, DoCheck {
   }
 
   onSubmit() {
-    this.generatingNumberService.generateNumbers();
+    this.generatingNumberService.couponList = [];
+    setTimeout(() => {this.generatingNumberService.generateNumbers(); }, 400);
   }
 }
