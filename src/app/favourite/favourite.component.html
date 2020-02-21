@@ -2,7 +2,7 @@
   <h4>Your Favourites</h4>
   <div class="row justify-content-center">
     <ol class="rectangle-list">
-      <li *ngFor="let fav of connectionService.favourites" (click)="delete(fav)">
+      <li [@selected] *ngFor="let fav of connectionService.favourites" (click)="delete(fav)">
         {{ fav.nums }}
         <fa-icon id="trash" [icon]="faTrash"></fa-icon>
         <fa-icon id="star" [icon]="faStar"></fa-icon>
