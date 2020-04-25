@@ -6,7 +6,7 @@ import { GeneratingNumberService } from '../generating/generating-number.service
 @Component({
   selector: 'app-control',
   templateUrl: './control.component.html',
-  styleUrls: ['./control.component.css']
+  styleUrls: ['./control.component.css'],
 })
 export class ControlComponent implements OnInit, DoCheck {
   @ViewChild('f', { static: false }) numbersForm: NgForm;
@@ -14,8 +14,10 @@ export class ControlComponent implements OnInit, DoCheck {
   isYourNumValid = false;
   isCouponNumValid = false;
 
-  constructor(public controlService: ControlInputService,
-              private generatingNumberService: GeneratingNumberService) {}
+  constructor(
+    public controlService: ControlInputService,
+    private generatingNumberService: GeneratingNumberService,
+  ) {}
 
   ngOnInit() {}
 
@@ -56,8 +58,24 @@ export class ControlComponent implements OnInit, DoCheck {
     }
   }
 
+  calculateMargin(): string {
+    const possibleNum = this.controlService.possibleCouponMax;
+    switch (true) {
+      case possibleNum >= 1 && possibleNum <= 9:
+        return 'ml-3';
+      case possibleNum >= 10 && possibleNum <= 99:
+        return 'ml-2';
+      case possibleNum >= 100 && possibleNum <= 999:
+        return 'ml-0';
+      default:
+        return 'ml-4';
+    }
+  }
+
   onSubmit() {
     this.generatingNumberService.couponList = [];
-    setTimeout(() => {this.generatingNumberService.generateNumbers(); }, 400);
+    setTimeout(() => {
+      this.generatingNumberService.generateNumbers();
+    }, 400);
   }
 }

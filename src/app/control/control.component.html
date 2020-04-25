@@ -77,7 +77,7 @@
             >Number of your coupons ({{ controlService.couponMin }} -
             {{ controlService.possibleCouponMax }}) :</label
           >
-          <div class="col-sm-2" [ngClass]="controlService.possibleCouponMax ? 'ml-0' : 'ml-4'">
+          <div class="col-sm-2" [ngClass]="calculateMargin()">
             <input
               type="number"
               class="form-control"
