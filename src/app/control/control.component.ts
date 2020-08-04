@@ -52,23 +52,9 @@ export class ControlComponent implements OnInit, DoCheck {
     if (
       this.isFieldNumValid &&
       this.isYourNumValid &&
-      this.controlService.yourNum < this.controlService.fieldNum
+      (this.controlService.yourNum < this.controlService.fieldNum || this.controlService.isSameNumbers)
     ) {
       this.controlService.possibleCouponMax = this.controlService.possibleCouponTotal();
-    }
-  }
-
-  calculateMargin(): string {
-    const possibleNum = this.controlService.possibleCouponMax;
-    switch (true) {
-      case possibleNum >= 1 && possibleNum <= 9:
-        return 'ml-3';
-      case possibleNum >= 10 && possibleNum <= 99:
-        return 'ml-2';
-      case possibleNum >= 100 && possibleNum <= 999:
-        return 'ml-0';
-      default:
-        return 'ml-4';
     }
   }
 

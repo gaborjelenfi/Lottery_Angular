@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ControlInputService {
+  isSameNumbers: boolean = false;
+  isSortingNotAllowed: boolean = false;
   fieldNum: number = null;
   fieldMin = 5;
   fieldMax = 90;
@@ -25,7 +27,7 @@ export class ControlInputService {
       multiplyX *= this.yourNum - i;
     }
     const total = multiplyRangeMax / multiplyX;
-    if (total <= this.couponMax) {
+    if (total <= this.couponMax && !this.isSameNumbers) {
       return Math.floor(total);
     } else {
       return this.couponMax;

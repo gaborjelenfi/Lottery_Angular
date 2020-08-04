@@ -21,8 +21,10 @@ export class GeneratingNumberService {
       do {
         this.singleCouponArr.push(this.randomNumber);
         this.randomNumber = this.randomNumberForYourNumber();
-      } while (this.noSameNumber());
-      this.singleCouponArr.sort((a, b) => a - b);
+      } while (this.sameNumberAllowed());
+      if (!this.controlService.isSortingNotAllowed) {
+        this.singleCouponArr.sort((a, b) => a - b);
+      }
       if (this.noSameCoupon() || this.couponList.length === 0) {
         this.couponList.push(this.singleCouponArr);
         i++;
@@ -36,20 +38,27 @@ export class GeneratingNumberService {
     return Math.floor(Math.random() * this.controlService.fieldNum) + 1;
   }
 
-  noSameNumber(): boolean {
+  sameNumberAllowed(): boolean {
     if (this.singleCouponArr.length >= this.controlService.yourNum) {
       return false;
-    } else {
-      for (let i = 0; i < this.singleCouponArr.length; ) {
-        if (this.singleCouponArr[i] === this.randomNumber) {
-          this.randomNumber = this.randomNumberForYourNumber();
-          i = 0;
-        } else {
-          i++;
-        }
-      }
+    } else if (this.controlService.isSameNumbers) {
       return true;
+    } else {
+      return this.noSameNumber();
     }
+  }
+
+  noSameNumber(): boolean {
+    for (let i = 0; i < this.singleCouponArr.length; ) {
+      if (this.singleCouponArr[i] === this.randomNumber) {
+        this.randomNumber = this.randomNumberForYourNumber();
+        i = 0;
+        console.log("this happened");
+      } else {
+        i++;
+      }
+    }
+    return true;
   }
 
   noSameCoupon(): boolean {

@@ -1,7 +1,7 @@
 
 div.container {
   text-align: center;
-  padding-top: 60px;
+  padding-top: 30px;
 }
 
 h3 {
@@ -16,6 +16,13 @@ label {
 
 button {
   width: 50%;
+}
+
+input, input:focus{
+  outline:0;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
 }
 
 input[type=number]::-webkit-inner-spin-button,
