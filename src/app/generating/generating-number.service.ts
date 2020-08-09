@@ -35,7 +35,11 @@ export class GeneratingNumberService {
   }
 
   randomNumberForYourNumber(): number {
-    return Math.floor(Math.random() * this.controlService.fieldNum) + 1;
+    if (this.controlService.isZeroCanBe) {
+      return Math.floor(Math.random() * (this.controlService.fieldNum + 1));
+    } else {
+      return Math.floor(Math.random() * this.controlService.fieldNum) + 1;
+    }
   }
 
   sameNumberAllowed(): boolean {
@@ -53,7 +57,6 @@ export class GeneratingNumberService {
       if (this.singleCouponArr[i] === this.randomNumber) {
         this.randomNumber = this.randomNumberForYourNumber();
         i = 0;
-        console.log("this happened");
       } else {
         i++;
       }

@@ -31,6 +31,20 @@
         </div>
       </div>
       <div class="form-group row justify-content-between">
+        <label for="is-sorting-not-allowed" class="col-form-label"
+          >Zero is allowed in your numbers :</label
+        >
+        <div class="col-sm-2">
+          <input
+            type="checkbox"
+            class="form-control"
+            name="isZeroCanBe"
+            #isSameNumbers="ngModel"
+            [(ngModel)]="controlService.isZeroCanBe"
+          />
+        </div>
+      </div>
+      <div class="form-group row justify-content-between">
         <label for="field" class="col-form-label"
           >Number of field maximum ({{ controlService.fieldMin }} -
           {{ controlService.fieldMax }}) :</label

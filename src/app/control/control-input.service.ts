@@ -4,8 +4,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ControlInputService {
-  isSameNumbers: boolean = false;
-  isSortingNotAllowed: boolean = false;
+  isSameNumbers = false;
+  isSortingNotAllowed = false;
+  isZeroCanBe = false;
   fieldNum: number = null;
   fieldMin = 5;
   fieldMax = 90;
