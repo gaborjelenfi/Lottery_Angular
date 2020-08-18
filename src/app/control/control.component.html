@@ -155,19 +155,27 @@
         Please enter between {{ controlService.couponMin }} and
         {{ controlService.possibleCouponMax }}!
       </div>
-      <button
-        type="submit"
-        class="btn btn-light btn-lg"
-        [disabled]="
-          !f.valid ||
-          !isFieldNumValid ||
-          !isYourNumValid ||
-          !isCouponNumValid ||
-          controlService.yourNum >= controlService.fieldNum && !controlService.isSameNumbers
-        "
-      >
-        Start
-      </button>
+      <div class="row justify-content-between">
+        <button
+          type="submit"
+          class="btn btn-light btn-lg"
+          [disabled]="
+            !f.valid ||
+            !isFieldNumValid ||
+            !isYourNumValid ||
+            !isCouponNumValid ||
+            controlService.yourNum >= controlService.fieldNum && !controlService.isSameNumbers
+          "
+        >
+          Start
+        </button>
+        <button
+          type="button"
+          class="btn btn-lg btn-secondary"
+          (click)="onClearForm()">
+          Clear
+        </button>
+      </div>
     </form>
   </div>
 </div>

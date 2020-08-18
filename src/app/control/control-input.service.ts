@@ -12,7 +12,8 @@ export class ControlInputService {
   fieldMax = 90;
   yourNum: number = null;
   yourMin = 1;
-  yourMax = 10;
+  yourMax: number = null;
+  defaultYourMax = 10;
   couponNum: number = null;
   couponMin = 1;
   couponMax = 250;
