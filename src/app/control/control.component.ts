@@ -31,7 +31,7 @@ export class ControlComponent implements OnInit, DoCheck {
       this.isFieldNumValid = true;
     }
 
-    if (this.isFieldNumValid && this.controlService.fieldNum <= this.controlService.defaultYourMax) {
+    if (!this.controlService.isSameNumbers && this.isFieldNumValid && this.controlService.fieldNum <= this.controlService.defaultYourMax) {
       this.controlService.yourMax = this.controlService.fieldNum - 1;
     } else {
       this.controlService.yourMax = this.controlService.defaultYourMax;
