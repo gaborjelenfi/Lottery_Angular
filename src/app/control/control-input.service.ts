@@ -21,6 +21,7 @@ export class ControlInputService {
 
   constructor() { }
 
+  // calculate the possible number of coupons
   possibleCouponTotal(): number {
     let multiplyRangeMax = 1;
     let multiplyX = 1;
@@ -32,6 +33,7 @@ export class ControlInputService {
     if (total <= this.couponMax && !this.isSameNumbers) {
       return Math.floor(total);
     } else {
+      // if the maximum number of coupons is higher than couponMax set to couponMax
       return this.couponMax;
     }
   }
