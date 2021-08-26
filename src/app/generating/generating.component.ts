@@ -40,7 +40,9 @@ export class GeneratingComponent implements OnInit {
   }
 
   add(nums: number[]): void {
+    // adding new favourite numbers to the favourites array
     this.connectionService.addFavourite({ nums } as Fav).subscribe(favNums => this.connectionService.favourites.push(favNums));
+    // remove favoutie numbers from the coupon list array
     this.generatingNumberService.couponList = this.generatingNumberService.couponList.filter(g => g !== nums);
   }
 }
