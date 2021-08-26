@@ -21,6 +21,7 @@ export class ControlComponent implements OnInit, DoCheck {
 
   ngOnInit() {}
 
+  // check if the input is still valid after any changes in the input fields
   ngDoCheck() {
     if (
       this.controlService.fieldNum < this.controlService.fieldMin ||
@@ -65,7 +66,9 @@ export class ControlComponent implements OnInit, DoCheck {
   }
 
   onSubmit() {
+    // reseting the coupon array whene generating new coupons
     this.generatingNumberService.couponList = [];
+    // adding 400ms delay to start rendering the new list of coupons, because of the animation time
     setTimeout(() => {
       this.generatingNumberService.generateNumbers();
     }, 400);
